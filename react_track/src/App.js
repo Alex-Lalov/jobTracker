@@ -37,14 +37,43 @@ function App() {
     setShowForm(false);
   };
 
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+
+  useEffect(() => {
+    const handleOnMouseMove = e => {
+      const { currentTarget: target } = e;
+  
+      const rect = target.getBoundingClientRect(),
+        x = e.clientX - rect.left,
+        y = e.clientY - rect.top;
+  
+      setMouseX(x);
+      setMouseY(y);
+      
+      target.style.setProperty("--mouse-x", `${x}px`);
+      target.style.setProperty("--mouse-y", `${y}px`);
+    };
+  
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => card.addEventListener("mousemove", handleOnMouseMove));
+  
+    return () => {
+      cards.forEach(card => card.removeEventListener("mousemove", handleOnMouseMove));
+    };
+  }, [entries]); // useEffect dependency array includes mouseX and mouseY
+  
+
   return (
-    <div className="App">
-      <h1>Applications</h1>
+    <div className="App" style={{"--mouse-x": `${mouseX}px`, "--mouse-y": `${mouseY}px`}}>
+      <div className='flex-container'>
+        <h1 className='h1-title'>Job Tracker</h1>
+      </div>
       <button className='add-button' onClick={() => setShowForm(!showForm)}>+</button>
       {showForm && <EntryForm newEntry={newEntry} setNewEntry={setNewEntry} handleAddEntry={handleAddEntry}/>}
       <br />
-      <div>
-      <EntryList entries={entries}/>
+      <div className='cards-body'>
+        <EntryList entries={entries}/>
       </div>
     </div>
   );

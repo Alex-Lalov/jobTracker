@@ -1,14 +1,52 @@
+:root {
+  --bg-color: rgb(20,20,20);
+}
+
+@font-face {
+  font-family: 'AnticSans-Regular';
+  src: url('./assets/fonts/AnticSans-Regular.otf') format('opentype');
+}
+
 body {
-  background: linear-gradient(to right, #141E30, #243B55);
-  font-family: Helvetica, sans-serif;
+  background: var(--bg-color);
+  font-family: 'AnticSans-Regular', sans-serif;
   color: #cacaca
 }
 
-.form-container, .entry-container {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 15px;
-  margin: 10px;
+.flex-container {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.h1-title {
+  position: relative;
+  font-family: 'AnticSans-Regular', Fallback, sans-serif;
+  font-size: 3vw;
+  z-index: 1;
+}
+
+.h1-title::before,
+.h1-title::after {
+  content: "";
+  position: absolute;
+  top: 60%;
+  width: 60%;
+  height: 1px; /* or whatever thickness you want */
+  background-color: #ffffff; /* line color */
+  z-index: -1;
+}
+
+.h1-title::before {
+  left: -80%;
+}
+
+.h1-title::after {
+  right: -80%;
 }
 
 /* Button styles */
@@ -27,22 +65,65 @@ button.add-button {
 }
 
 .App {
-  font-family: Arial, sans-serif;
+  font-family:'Trebuchet MS', Times, serif, sans-serif;
   margin: 20px;
 }
 
+.form-container{
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px;
+}
+
+.cards-body {
+  display: flex;
+  height: 100vh;
+  margin: 0px;
+  overflow: hidden;
+  padding-left:8%;
+  padding-right: 8%;
+  justify-content: center;
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 1000px;
+  width: calc(100%-20px);
+}
+
 .entry {
-  border: 2px solid #ccc;
-  margin: 15px 0;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 200px;
+  width: 300px;
+  position: relative;
+}
+
+.entry::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  position:absolute;
+  top: 0px;
+  width: 100%;
 }
 
 .entry-header {
   font-weight: bold;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-around;
 }
 
 .entry-body {
