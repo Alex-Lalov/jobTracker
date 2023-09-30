@@ -4,15 +4,15 @@ export default function EntryList({ entries }){
             {entries.map((entry) => (
                 <div key={entry.id} className="entry">
                     <div className="entry-header">
-                        <span>{entry.company}</span>
-                        <span>{entry.date_string}</span>
+                        <span className="company">{entry.job_title}@{entry.company}</span>
                     </div>
                     <div className="entry-body">
-                        <div>Job Title: {entry.job_title}</div>
                         <div>Description: {entry.description}</div>
                     </div>
+                    
                     <div className="entry-footer">
-                        Status: {entry.status}
+                        <span className="date">{entry.date_string}</span>
+                        <span className="status">Status: {entry.status}</span>
                     </div>
                 </div>
             ))}

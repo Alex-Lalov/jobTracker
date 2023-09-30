@@ -71,9 +71,8 @@ button.add-button {
 
 .cards-body {
   display: flex;
-  margin: 0px;
-  overflow:visible;
-  padding-left:8%;
+  margin: 0;
+  padding-left: 8%;
   padding-right: 8%;
   justify-content: center;
 }
@@ -82,9 +81,9 @@ button.add-button {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
-  max-width: 1000px;
-  width: calc(100%-20px);
+  gap: 20px;
+  max-width: 1200px;
+  width: calc(100% - 20px);
 }
 
 .entry {
@@ -93,40 +92,51 @@ button.add-button {
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
   height: 200px;
-  width: 300px;
+  width: 380px;
   position: relative;
-}
-
-.entry::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.06),
-    transparent 40%
-  );
-  border-radius: inherit;
-  content: "";
-  height: 100%;
-  left: 0px;
-  position:absolute;
-  top: 0px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .entry-header {
   font-weight: bold;
   display: flex;
-  justify-content:space-around;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.entry-header .company {
+  font-size: 150%;
 }
 
 .entry-body {
-  margin-top: 10px;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  margin: 20px;
+  margin-top: 0px;
 }
 
 .entry-footer {
-  margin-top: 10px;
-  text-align: right;
+  display: flex;
+  margin-top: auto;
   font-style: italic;
+  margin: 20px;
+  margin-right: 20px;
+  justify-content: space-between;
 }
+
+.status {
+  text-align: right;
+}
+
+.date {
+  text-align: left;
+}
+
 
 .form {
   position: relative;
@@ -135,7 +145,7 @@ button.add-button {
 .circular-button {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 30px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -154,36 +164,39 @@ button.add-button {
   bottom: 100px;
   width: 20%; 
   height: 45%; 
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
   z-index: 0; 
 }
 
 .overlay form {
   display: flex;
   flex-direction: column;
-  height: 100%;  /* take full height of overlay */
+  height: 100%;
 }
 
 .overlay input[type="text"] {
   background: transparent; 
   color: white;
+  height: 20%;
   width: 90%; 
   box-sizing: border-box;
-  border: 1px rgba(0, 0, 0, 0.7);
+  border: 1px rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
   padding: 10px;
   margin: 10px; 
 }
 
 .overlay input[type="text"]:focus {
-  outline: none;
+  outline: 2px solid white;
 }
 
 .overlay input[type="text"]::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .overlay button[type="submit"] {
   margin-top: auto;
   align-self: flex-end;
+  margin: 20px;
 }
