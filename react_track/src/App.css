@@ -51,8 +51,8 @@ body {
 
 /* Button styles */
 button {
-  background-color: #007bff;
-  color: white;
+  background-color: rgb(103, 103, 103);
+  color: rgb(255, 255, 255);
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -67,13 +67,6 @@ button.add-button {
 .App {
   font-family:'Trebuchet MS', Times, serif, sans-serif;
   margin: 20px;
-}
-
-.form-container{
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 15px;
-  margin: 10px;
 }
 
 .cards-body {
@@ -133,4 +126,64 @@ button.add-button {
   margin-top: 10px;
   text-align: right;
   font-style: italic;
+}
+
+.form {
+  position: relative;
+}
+
+.circular-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgb(0, 70, 0);
+  color: white;
+  font-size: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  right: 20px;
+  bottom: 100px;
+  width: 20%; 
+  height: 45%; 
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  z-index: 0; 
+}
+
+.overlay form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;  /* take full height of overlay */
+}
+
+.overlay input[type="text"] {
+  background: transparent; 
+  color: white;
+  width: 90%; 
+  box-sizing: border-box;
+  border: 1px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  margin: 10px; 
+}
+
+.overlay input[type="text"]:focus {
+  outline: none;
+}
+
+.overlay input[type="text"]::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.overlay button[type="submit"] {
+  margin-top: auto;
+  align-self: flex-end;
 }

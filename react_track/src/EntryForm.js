@@ -1,6 +1,6 @@
 export default function EntryForm({ newEntry, setNewEntry, handleAddEntry }) {
     return(
-        <div className='form-container'>
+        <div className='overlay'>
             <form onSubmit={handleAddEntry}>
             <input 
                 type="text" 
@@ -15,8 +15,7 @@ export default function EntryForm({ newEntry, setNewEntry, handleAddEntry }) {
                 onChange={(e) => setNewEntry({...newEntry, job_title: e.target.value})}
             />
             <input 
-                rows="4"
-                cols="50" 
+                type="text"
                 placeholder="Description"
                 value={newEntry.description}
                 onChange={(e) => setNewEntry({...newEntry, description: e.target.value})}
@@ -28,7 +27,7 @@ export default function EntryForm({ newEntry, setNewEntry, handleAddEntry }) {
                 onChange={(e) => setNewEntry({...newEntry, status: e.target.value})}
             />
             <br />
-            <button type="submit">Add Entry</button>
+            <button type="submit">Create</button>
             </form>
         </div>
     )

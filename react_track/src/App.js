@@ -13,7 +13,8 @@ function App() {
     description: '',
     status: ''
   });
-  const [showForm, setShowForm] = useState(false);
+
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   useEffect(() => {
     // You can load initial entries here from a database/API if needed
@@ -34,7 +35,7 @@ function App() {
       description: '',
       status: ''
     })
-    setShowForm(false);
+    setIsOverlayOpen(false);
   };
 
   const [mouseX, setMouseX] = useState(0);
@@ -69,11 +70,13 @@ function App() {
       <div className='flex-container'>
         <h1 className='h1-title'>Job Tracker</h1>
       </div>
-      <button className='add-button' onClick={() => setShowForm(!showForm)}>+</button>
-      {showForm && <EntryForm newEntry={newEntry} setNewEntry={setNewEntry} handleAddEntry={handleAddEntry}/>}
       <br />
       <div className='cards-body'>
         <EntryList entries={entries}/>
+      </div>
+      <div className='form'>
+        <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>+</button>
+        {isOverlayOpen && <EntryForm newEntry={newEntry} setNewEntry={setNewEntry} handleAddEntry={handleAddEntry}/>}
       </div>
     </div>
   );
