@@ -38,14 +38,23 @@ function App() {
     setIsOverlayOpen(false);
   };
 
+  const handleToggle = (id) => {
+    setEntries(entries.map(entry => entry.id === id ? { ...entry, selected: !entry.selected } : entry));
+  };
+
+  const handleDelete = (id) => {
+    const updatedEntries = entries.filter(entry => entry.id !== id);
+    setEntries(updatedEntries);
+  }
+
   return (
     <div className="App">
       <div className='flex-container'>
-        <h1 className='h1-title'>Job Tracker</h1>
+        <h1 className='h1-title'> Job Tracker </h1>
       </div>
       <br />
       <div className='cards-body'>
-        <EntryList entries={entries}/>
+        <EntryList entries={entries} handleToggle={handleToggle} handleDelete={handleDelete}/>
       </div>
       <div className='form'>
         <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>+</button>
