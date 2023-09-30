@@ -17,8 +17,15 @@ function App() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   useEffect(() => {
-    // You can load initial entries here from a database/API if needed
+    const savedEntries = localStorage.getItem('entries');
+    if (savedEntries){
+      setEntries(JSON.parse(savedEntries))
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('entries', JSON.stringify(entries));
+  }, [entries])
 
   const handleAddEntry = (e) => {
     e.preventDefault();
