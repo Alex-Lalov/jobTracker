@@ -82,20 +82,26 @@ button.add-button {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  max-width: 1200px;
+  max-width: 1300px;
   width: calc(100% - 20px);
 }
 
 .entry {
   background-color: rgba(255, 255, 255, 0.02);
+  background: radial-gradient(
+    circle at 50px 10px, 
+    rgba(255, 255, 255, 0.056), 
+    rgba(255, 255, 255, 0.02)
+  );
   border-radius: 10px;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 200px;
-  width: 380px;
+  height: 250px;
+  width: 400px;
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .entry-header {
@@ -112,12 +118,20 @@ button.add-button {
 
 .entry-body {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inner-entry-body {
+  margin-left: 20px;
+  margin-right: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-  margin: 20px;
-  margin-top: 0px;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .entry-footer {
@@ -184,11 +198,12 @@ button.add-button {
   border: 1px rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   padding: 10px;
-  margin: 10px; 
+  margin: 10px;
+  font-size: larger;
 }
 
 .overlay input[type="text"]:focus {
-  outline: 2px solid white;
+  outline: 2px solid rgba(255, 255, 255, 0.452);
 }
 
 .overlay input[type="text"]::placeholder {
@@ -199,4 +214,5 @@ button.add-button {
   margin-top: auto;
   align-self: flex-end;
   margin: 20px;
+  font-size: large;
 }

@@ -7,7 +7,7 @@ export default function EntryList({ entries }){
                         <span className="company">{entry.job_title}@{entry.company}</span>
                     </div>
                     <div className="entry-body">
-                        <div>Description: {entry.description}</div>
+                        <div className="inner-entry-body">Description: {entry.description}</div>
                     </div>
                     
                     <div className="entry-footer">
