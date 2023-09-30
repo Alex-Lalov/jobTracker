@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Entry from './Entry';
+import EntryForm from './EntryForm';
+import EntryList from './EntryList';
 import './App.css';
 
-class Entry {
-  constructor(company, job_title, description, status){
-    this.company = company;
-    this.job_title = job_title;
-    this.description = description;
-    this.status = status;
-    const date = new Date();
-    this.date_string = date.toDateString()
-    this.id = date.toISOString();
-  }
-}
 
 function App() {
   const [entries, setEntries] = useState([]);
@@ -49,58 +41,10 @@ function App() {
     <div className="App">
       <h1>Applications</h1>
       <button className='add-button' onClick={() => setShowForm(!showForm)}>+</button>
-
-      {showForm && (
-        <div className='form-container'>
-          <form onSubmit={handleAddEntry}>
-            <input 
-              type="text" 
-              placeholder="Company" 
-              value={newEntry.company} 
-              onChange={(e) => setNewEntry({...newEntry, company: e.target.value})}
-            />
-            <input 
-              type="text" 
-              placeholder="Job Title" 
-              value={newEntry.job_title} 
-              onChange={(e) => setNewEntry({...newEntry, job_title: e.target.value})}
-            />
-            <input 
-              rows="4"
-              cols="50" 
-              placeholder="Description"
-              value={newEntry.description}
-              onChange={(e) => setNewEntry({...newEntry, description: e.target.value})}
-            ></input>
-            <input 
-              type="text" 
-              placeholder="Status" 
-              value={newEntry.status} 
-              onChange={(e) => setNewEntry({...newEntry, status: e.target.value})}
-            />
-            <br />
-            <button type="submit">Add Entry</button>
-          </form>
-        </div>
-      )}
-
+      {showForm && <EntryForm newEntry={newEntry} setNewEntry={setNewEntry} handleAddEntry={handleAddEntry}/>}
       <br />
       <div>
-      {entries.map((entry) => (
-        <div key={entry.id} className="entry entry-container">
-          <div className="entry-header">
-            <span>{entry.company}</span>
-            <span>{entry.date_string}</span>
-          </div>
-          <div className="entry-body">
-            <div>Job Title: {entry.job_title}</div>
-            <div>Description: {entry.description}</div>
-          </div>
-          <div className="entry-footer">
-            Status: {entry.status}
-          </div>
-        </div>
-      ))}
+      <EntryList entries={entries}/>
       </div>
     </div>
   );
