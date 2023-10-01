@@ -12,9 +12,13 @@ let mainWindow;
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
+    title: "Job Tracker",
+    icon: 'public/JT_top.ico',
     width: 800,
     height: 600,
   });
+
+  mainWindow.setMenu(null);
 
   // Point your Electron BrowserWindow to your server URL
   mainWindow.loadURL(`http://localhost:${port}`);
