@@ -7,18 +7,21 @@ export default function EntryForm({ newEntry, setNewEntry, handleAddEntry }) {
                 placeholder="Company" 
                 value={newEntry.company} 
                 onChange={(e) => setNewEntry({...newEntry, company: e.target.value})}
+                required
             />
             <input 
                 type="text" 
                 placeholder="Job Title" 
                 value={newEntry.job_title} 
                 onChange={(e) => setNewEntry({...newEntry, job_title: e.target.value})}
+                required
             />
             <input 
                 type="text"
                 placeholder="Description"
                 value={newEntry.description}
                 onChange={(e) => setNewEntry({...newEntry, description: e.target.value})}
+                required
             ></input>
             <input 
                 type="text" 

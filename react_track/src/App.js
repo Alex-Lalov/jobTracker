@@ -11,7 +11,7 @@ function App() {
     company: '',
     job_title: '',
     description: '',
-    status: ''
+    status: 'Applied'
   });
 
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -40,7 +40,7 @@ function App() {
       company: '',
       job_title: '',
       description: '',
-      status: ''
+      status: 'Applied'
     })
     setIsOverlayOpen(false);
   };
