@@ -23,6 +23,10 @@ body {
   width: 100%;
 }
 
+.banner {
+  margin-bottom: 20px;
+}
+
 .h1-title {
   position: relative;
   font-family: 'AnticSans-Regular', Fallback, sans-serif;
@@ -199,7 +203,7 @@ button.add-button {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: rgb(0, 70, 0);
+  background: #27ae60;
   color: white;
   font-size: 36px;
   display: flex;

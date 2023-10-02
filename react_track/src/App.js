@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Entry from './Entry';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
+import SearchBar from './SearchBar';
 import './App.css';
 
 
 function App() {
+  //Use State Hooks (entries, entry, searchterm, overlay)
   const [entries, setEntries] = useState([]);
   const [newEntry, setNewEntry] = useState({
     company: '',
@@ -13,19 +15,23 @@ function App() {
     description: '',
     status: 'Applied'
   });
-
+  const [searchTerm, setSearchTerm] = useState('');
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
+  //Use Effect Hooks Load and Store
   useEffect(() => {
     const savedEntries = localStorage.getItem('entries');
     if (savedEntries){
       setEntries(JSON.parse(savedEntries))
     }
   }, []);
-
   useEffect(() => {
     localStorage.setItem('entries', JSON.stringify(entries));
   }, [entries])
+
+  const filteredEntries = entries.filter(entry =>
+    entry.job_title.toLowerCase().includes(searchTerm.toLowerCase()) || entry.company.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleAddEntry = (e) => {
     e.preventDefault();
@@ -59,9 +65,11 @@ function App() {
       <div className='flex-container'>
         <h1 className='h1-title'> Job Tracker </h1>
       </div>
-      <br />
+      <div className='flex-container banner'>
+        <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>
+      </div>
       <div className='cards-body'>
-        <EntryList entries={entries} handleToggle={handleToggle} handleDelete={handleDelete}/>
+        <EntryList entries={filteredEntries} handleToggle={handleToggle} handleDelete={handleDelete}/>
       </div>
       <div className='form'>
         <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>+</button>
