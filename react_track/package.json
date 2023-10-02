@@ -26,7 +26,7 @@
     "eject": "react-scripts eject"
   },
   "build": {
-    "appId": "com.your-app.id",
+    "appId": "app.id",
     "extends": null,
     "productName": "Job Tracker",
     "directories": {
@@ -34,6 +34,7 @@
     },
     "files": [
       "main.js",
+      "build/**/*",
       "dist/**/*",
       "node_modules/**/*"
     ]
