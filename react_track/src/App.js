@@ -52,12 +52,25 @@ function App() {
   };
 
   const handleToggle = (id) => {
-    setEntries(entries.map(entry => entry.id === id ? { ...entry, selected: !entry.selected } : entry));
+    const target = entries.find(entry => entry.id === id);
+    if (!target.editing) {
+      setEntries(entries.map(entry => entry.id === id ? { ...entry, selected: !entry.selected } : {...entry, selected: false, editing: false}));
+    }
   };
 
   const handleDelete = (id) => {
     const updatedEntries = entries.filter(entry => entry.id !== id);
     setEntries(updatedEntries);
+  }
+
+  const handleEdit = (id) => {
+    setEntries(entries.map(entry => entry.id === id ? { ...entry, selected:!entry.selected, editing: !entry.editing } : entry));
+  }
+
+  const handleStatusUpdate = (e, id) => {
+    e.preventDefault();
+    const newStatus = e.target.value;
+    setEntries(entries.map(entry => entry.id === id ? {...entry, status: newStatus, editing: false} : entry));
   }
 
   return (
@@ -69,7 +82,7 @@ function App() {
         <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>
       </div>
       <div className='cards-body'>
-        <EntryList entries={filteredEntries} handleToggle={handleToggle} handleDelete={handleDelete}/>
+        <EntryList entries={filteredEntries} handleToggle={handleToggle} handleDelete={handleDelete} handleEdit={handleEdit} handleStatusUpdate={handleStatusUpdate}/>
       </div>
       <div className='form'>
         <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>+</button>
