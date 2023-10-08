@@ -115,6 +115,36 @@ button.add-button {
   cursor: pointer;
 }
 
+.edit-icon {
+  position:absolute;
+  top: 50;
+  right: 0;
+  background: #2980b9;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  user-select: none;
+  cursor: pointer;
+}
+
+.status-update{
+  background: #7f8c8d; 
+  color: white;
+  height: 20px;
+  width: 30%;
+  border: 1px rgba(255, 255, 255, 0.7);
+  border-radius: 2px;
+}
+
+.status-update:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.452);
+}
+
 .hide {
   display: none;
 }
