@@ -14,8 +14,11 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     title: "Job Tracker",
     icon: 'public/JT_top.ico',
-    width: 1920,
-    height: 1080
+    width: 1600,
+    height: 900,
+    webPreferences: {
+      overlayScrollbars: true
+    }
   });
 
   mainWindow.setMenu(null);
