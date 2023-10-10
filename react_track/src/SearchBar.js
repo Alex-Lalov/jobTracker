@@ -6,7 +6,7 @@ function SearchBar({ setSearchTerm, searchTerm }){
         <div className="search-box">
             <input className="search-txt" type="text" name="" placeholder="Search..." onChange={(e) => setSearchTerm(e.target.value)}/>
             <button className='search-btn'>
-                <i className='fas fa-search'></i>
+                <i className='fas fa-search fa-2x'></i>
             </button>
         </div>
     )

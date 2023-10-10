@@ -9,10 +9,9 @@ function Filter({ filters, setFilters }){
     return (
         <div className="filter">
             <button className='filter-btn' onClick={handleClick}>
-                <i className="fa-solid fa-filter"></i>
+                <i className={filters.status ? "fa-solid fa-filter fa-2x" : "fa-solid fa-calendar-days fa-2x"}></i>
             </button>
         </div>
     )
 }
-
 export default Filter;
