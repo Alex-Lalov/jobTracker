@@ -3,6 +3,7 @@ import Entry from './Entry';
 import EntryForm from './EntryForm';
 import EntryList from './EntryList';
 import SearchBar from './SearchBar';
+import Filter from './Filter';
 import './App.css';
 
 
@@ -18,6 +19,11 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
+  const [filters, setFilters] = useState({
+    'date': false,
+    'status': false
+  })
+
   //Use Effect Hooks Load and Store
   useEffect(() => {
     const savedEntries = localStorage.getItem('entries');
@@ -29,9 +35,21 @@ function App() {
     localStorage.setItem('entries', JSON.stringify(entries));
   }, [entries])
 
-  const filteredEntries = entries.filter(entry =>
-    entry.job_title.toLowerCase().includes(searchTerm.toLowerCase()) || entry.company.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const [deltaEntries, setDeltaEntries] = useState([])
+    
+  useEffect(() => {
+    let filteredEntries = entries.filter(entry =>
+      entry.job_title.toLowerCase().includes(searchTerm.toLowerCase()) || entry.company.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    if (filters.date){
+        filteredEntries.reverse();
+    }
+    else if (filters.status){
+        filteredEntries.sort((a,b) => a.status.localeCompare(b.status));
+    }
+    setDeltaEntries(filteredEntries);
+  }, [entries, filters, searchTerm])
 
   const handleAddEntry = (e) => {
     e.preventDefault();
@@ -80,9 +98,10 @@ function App() {
       </div>
       <div className='flex-container banner'>
         <SearchBar setSearchTerm={setSearchTerm} searchTerm={searchTerm}/>
+        <Filter filters={ filters } setFilters={ setFilters }/>
       </div>
       <div className='cards-body'>
-        <EntryList entries={filteredEntries} handleToggle={handleToggle} handleDelete={handleDelete} handleEdit={handleEdit} handleStatusUpdate={handleStatusUpdate}/>
+        <EntryList entries={deltaEntries} setEntries={setEntries} handleToggle={handleToggle} handleDelete={handleDelete} handleEdit={handleEdit} handleStatusUpdate={handleStatusUpdate}/>
       </div>
       <div className='form'>
         <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>+</button>

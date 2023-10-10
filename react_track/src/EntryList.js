@@ -2,12 +2,12 @@ export default function EntryList({ entries, handleToggle, handleDelete, handleE
     return (
         <div id="cards">
             {entries.map((entry) => (
-            <div className={`card ${entry.editing ? 'editing' : ''}`}>
+                <div key={entry.id} className={`card ${entry.editing ? 'editing' : ''}`}>
                 <div className={`delete-icon ${entry.selected ? 'show' : 'hide'}`} onClick={ () => handleDelete(entry.id)}>
                     ✕
                 </div>
                 <div className={`edit-icon ${entry.selected ? 'show' : 'hide'}`} onClick={ () => handleEdit(entry.id)}>
-                    <i class="fa-solid fa-pen"></i>
+                    <i className="fa-solid fa-pen"></i>
                 </div>
                 <div key={entry.id} className={`entry ${entry.selected ? 'blurred' : ''} ${entry.editing ? 'editing' : ''}`} onClick={() => handleToggle(entry.id)}>
                     <div className="entry-header">
@@ -31,8 +31,9 @@ export default function EntryList({ entries, handleToggle, handleDelete, handleE
                         </span>
                     </div>
                 </div>
-            </div>
-            ))}
+                </div>
+                ))
+            }
         </div>
     )
 }
