@@ -20,7 +20,7 @@ function App() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   const [filters, setFilters] = useState({
-    'date': false,
+    'date': true,
     'status': false
   })
 
@@ -47,6 +47,7 @@ function App() {
     }
     else if (filters.status){
         filteredEntries.sort((a,b) => a.status.localeCompare(b.status));
+        filteredEntries.reverse();
     }
     setDeltaEntries(filteredEntries);
   }, [entries, filters, searchTerm])
