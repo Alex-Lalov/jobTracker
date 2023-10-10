@@ -105,7 +105,9 @@ function App() {
         <EntryList entries={deltaEntries} setEntries={setEntries} handleToggle={handleToggle} handleDelete={handleDelete} handleEdit={handleEdit} handleStatusUpdate={handleStatusUpdate}/>
       </div>
       <div className='form'>
-        <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>+</button>
+        <button className='circular-button' onClick={() => setIsOverlayOpen(!isOverlayOpen)}>
+          <i className="fa-solid fa-plus"></i>
+        </button>
         {isOverlayOpen && <EntryForm newEntry={newEntry} setNewEntry={setNewEntry} handleAddEntry={handleAddEntry}/>}
       </div>
     </div>
